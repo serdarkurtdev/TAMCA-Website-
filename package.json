@@ -10,12 +10,15 @@
     "lint": "eslint .",
     "build-css": "echo \"Build CSS...\"",
     "build-js": "echo \"Build JavaScript...\"",
-    "build-html": "echo \"Build HTML...\""
+    "build-html": "echo \"Build HTML...\"",
   },
   "author": "Serdar K",
   "license": "ISC",
   "keywords": [],
   "dependencies": {
     "express": "^4.18.3"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0"
   }
 }
