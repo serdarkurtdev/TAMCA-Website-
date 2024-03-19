@@ -8,9 +8,9 @@
     "build": "echo \"Building your web app...\" && npm run lint && npm run build-css && npm run build-js && npm run build-html",
     "start": "node index.js",
     "lint": "eslint .",
-    "build-css": "echo \"Build CSS...\"",
-    "build-js": "echo \"Build JavaScript...\"",
-    "build-html": "echo \"Build HTML...\"",
+    "build-css": "sass src/styles/main.scss dist/css/style.css",
+    "build-js": "babel src/scripts/main.js --out-file dist/js/main.js",
+    "build-html": "cp src/index.html dist/index.html"
   },
   "author": "Serdar K",
   "license": "ISC",
@@ -19,6 +19,9 @@
     "express": "^4.18.3"
   },
   "devDependencies": {
-    "eslint": "^8.57.0"
+    "eslint": "^8.57.0",
+    "node-sass": "^6.0.0",
+    "babel-cli": "^7.0.0",
+    "babel-preset-env": "^1.0.0"
   }
 }
