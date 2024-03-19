@@ -8,7 +8,7 @@
 </head>
 <body>
     <h2>Make a Donation</h2>
-    <form id="payment-form" action="https://tamca.org/stripe/webhook" method="POST">
+    <form id="payment-form">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" required><br><br>
         
@@ -28,42 +28,6 @@
         <button id="submit-button">Pay</button>
     </form>
 
-    <script>
-        var stripe = Stripe('pk_test_51OsEQqDSgElixwQZmtp6HSlCbAXbUoFZ0Ypg93PfbTLvsOBRu0MOP9U7n2L4lmhczgyCLnGmhQxnJXWW5HN9c1mB00bw1jQTCf'); // Replace with your Stripe publishable key
-        var elements = stripe.elements();
-        var card = elements.create('card');
-        card.mount('#card-element');
-
-        card.addEventListener('change', function(event) {
-            var displayError = document.getElementById('card-errors');
-            if (event.error) {
-                displayError.textContent = event.error.message;
-            } else {
-                displayError.textContent = '';
-            }
-        });
-
-        var form = document.getElementById('payment-form');
-        form.addEventListener('submit', function(event) {
-            event.preventDefault();
-            
-            stripe.createToken(card).then(function(result) {
-                if (result.error) {
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                } else {
-                    var token = result.token;
-                    // Add the token as a hidden input to the form
-                    var tokenInput = document.createElement('input');
-                    tokenInput.setAttribute('type', 'hidden');
-                    tokenInput.setAttribute('name', 'stripeToken');
-                    tokenInput.setAttribute('value', token.id);
-                    form.appendChild(tokenInput);
-                    // Submit the form to your server
-                    form.submit();
-                }
-            });
-        });
-    </script>
+    <script src="js/test-donations.js"></script>
 </body>
 </html>

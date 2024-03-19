@@ -46,8 +46,40 @@ app.use((req, res) => {
   res.status(404).sendFile(path.join(__dirname, 'public', '404.html'));
 });
 
-// Start the server
+
+// Stripe payment handler test
+const express = require('express');
+const bodyParser = require('body-parser');
+const stripe = require('stripe')('your_stripe_secret_key');
+
+app.use(bodyParser.json());
+
+// Endpoint to handle Stripe webhook events
+app.post('https://tamca.org/stripe/webhook', async (req, res) => {
+    const payload = req.body;
+    const sig = req.headers['stripe-signature'];
+
+    try {
+        // Verify webhook signature
+        const event = stripe.webhooks.constructEvent(payload, sig, 'your_webhook_secret');
+
+        // Handle successful payment events
+        if (event.type === 'payment_intent.succeeded') {
+            const paymentIntent = event.data.object;
+            console.log('Payment intent succeeded:', paymentIntent);
+            // Insert data into Azure SQL Database or perform other actions
+        }
+
+        res.sendStatus(200);
+    } catch (error) {
+        console.error('Error handling webhook event:', error);
+        res.sendStatus(400);
+    }
+});
+
+// Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
+

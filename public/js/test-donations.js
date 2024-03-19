@@ -1,76 +1,63 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const nodemailer = require('nodemailer');
-const stripe = require('stripe')('your_stripe_api_key');
+// Set your publishable Stripe key
+const stripe = Stripe('pk_test_51OsEQqDSgElixwQZmtp6HSlCbAXbUoFZ0Ypg93PfbTLvsOBRu0MOP9U7n2L4lmhczgyCLnGmhQxnJXWW5HN9c1mB00bw1jQTCf');
+const elements = stripe.elements();
 
-const app = express();
-const port = 3000;
+// Create an instance of the card Element
+const card = elements.create('card');
 
-app.use(bodyParser.json());
+// Add an instance of the card Element into the `card-element` div
+card.mount('#card-element');
 
-// Webhook endpoint for Stripe events
-app.post('/webhook', async (req, res) => {
-    const sig = req.headers['stripe-signature'];
-    let event;
+// Handle real-time validation errors from the card Element
+card.addEventListener('change', function(event) {
+    const displayError = document.getElementById('card-errors');
+    if (event.error) {
+        displayError.textContent = event.error.message;
+    } else {
+        displayError.textContent = '';
+    }
+});
 
+// Handle form submission
+const form = document.getElementById('payment-form');
+form.addEventListener('submit', async function(event) {
+    event.preventDefault();
+
+    // Disable the submit button to prevent multiple submissions
+    form.querySelector('button').disabled = true;
+
+    const { token, error } = await stripe.createToken(card);
+
+    if (error) {
+        // Inform the user if there's an error
+        const errorElement = document.getElementById('card-errors');
+        errorElement.textContent = error.message;
+    } else {
+        // If successful, send the token to your server
+        stripeTokenHandler(token);
+    }
+});
+
+// Send the token to your server
+async function stripeTokenHandler(token) {
     try {
-        event = stripe.webhooks.constructEvent(req.rawBody, sig, 'your_webhook_secret');
-    } catch (err) {
-        console.error('Error verifying webhook signature:', err.message);
-        return res.sendStatus(400);
-    }
+        const response = await fetch('https://tamca.org/stripe/webhook', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ token: token.id })
+        });
 
-    // Handle the event
-    switch (event.type) {
-        case 'checkout.session.completed':
-            const session = event.data.object;
-            const customerEmail = session.customer_email;
-            const amountPaid = session.amount_total / 100; // Convert from cents to dollars
-            const invoiceId = session.invoice;
-            
-            // Generate invoice PDF
-            const pdfBuffer = await stripe.invoices.retrieveInvoicePdf(invoiceId);
-
-            // Send email with invoice PDF attached
-            sendInvoiceEmail(customerEmail, pdfBuffer);
-            break;
-        // Handle other event types as needed
-    }
-
-    // Acknowledge receipt of the webhook event
-    res.sendStatus(200);
-});
-
-// Function to send email with invoice attached
-function sendInvoiceEmail(customerEmail, pdfBuffer) {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'your_email@gmail.com',
-            pass: 'your_email_password'
-        }
-    });
-
-    const mailOptions = {
-        from: 'your_email@gmail.com',
-        to: customerEmail,
-        subject: 'Invoice for Your Donation',
-        text: 'Thank you for your donation! Please find your invoice attached.',
-        attachments: [{
-            filename: 'invoice.pdf',
-            content: pdfBuffer
-        }]
-    };
-
-    transporter.sendMail(mailOptions, (err, info) => {
-        if (err) {
-            console.error('Error sending email:', err);
+        if (response.ok) {
+            // Handle successful payment
+            alert('Payment successful! Thank you for your donation.');
         } else {
-            console.log('Email sent:', info.response);
+            // Handle payment error
+            alert('Payment failed. Please try again later.');
         }
-    });
+    } catch (error) {
+        console.error('Error processing payment:', error);
+        alert('An error occurred while processing your payment. Please try again later.');
+    }
 }
-
-app.listen(port, () => {
-    console.log(`Server is running on port ${port}`);
-});
