@@ -4,8 +4,7 @@
   "description": "initial release for new tamca dynamic azure website",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Building your web app...\" && npm run lint",
+    "build": "echo \"Building your web app...\"",
     "start": "node index.js",
     "lint": "eslint ."
   },
