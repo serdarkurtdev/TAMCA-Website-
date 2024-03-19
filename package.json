@@ -4,6 +4,7 @@
   "description": "initial release for new tamca dynamic azure website",
   "main": "index.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "author": "Serdar K",
