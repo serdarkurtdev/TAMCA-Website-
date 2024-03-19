@@ -1,0 +1,11 @@
+{
+  "name": "tamcaazure",
+  "version": "1.0.0",
+  "description": "initial release for new tamca dynamic azure website",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
