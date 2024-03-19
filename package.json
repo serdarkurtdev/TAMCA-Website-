@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "build": "echo \"Building your web app...\" && npm run lint && npm run build-css && npm run build-js && npm run build-html",
+    "start": "node index.js",
+    "lint": "eslint .",
+    "build-css": "echo \"Build CSS...\"",
+    "build-js": "echo \"Build JavaScript...\"",
+    "build-html": "echo \"Build HTML...\""
   },
   "author": "Serdar K",
   "license": "ISC",
