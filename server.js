@@ -1,12 +1,13 @@
-// server.js
 const express = require('express');
-const app = express();
-const port = process.env.PORT || 3000;
+const path = require('path');
 
-// Serve static files (HTML, CSS, JS) from a directory
-app.use(express.static('public'));
+const app = express();
+
+// Serve static files from the 'public' directory
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
