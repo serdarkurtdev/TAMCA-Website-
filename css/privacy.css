@@ -1,0 +1,35 @@
+.content {
+    flex: 1;
+    padding: 1%;
+}
+
+.content h1 {
+    text-align: center;
+}
+
+.banner {
+  color: #000000;
+  margin: auto;
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 72px;
+}
+
+/* Tablet styles (e.g., screens between 768px and 1024px wide) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .content {
+        padding-bottom: 10%;
+    }
+}
+
+/* Mobile styles (e.g., screens less than 768px wide) */
+@media screen and (max-width: 767px) {
+    .content {
+        padding-bottom: 20%;
+    }
+    .site-footer {
+        display: none;
+    }
+}

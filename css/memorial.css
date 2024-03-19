@@ -1,0 +1,58 @@
+.memorialContact,
+.memorialDirectorContact,
+.memorialRedirect {
+    cursor: pointer;
+}
+.memorial-description {
+    display: block;
+    justify-content: space-between;
+    text-align: center;
+}
+.memorial-column {
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 3%;
+    padding-right: 3%;
+}
+
+
+/* Tablet styles (e.g., screens between 768px and 1024px wide) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .memorial-services {
+        margin: auto;
+        text-align: center;
+    }
+    .memorial-description {
+        display: inline-block;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .memorial-column {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        flex-grow: 1;
+        border-top: 1px solid lightgray;
+    }
+}
+
+/* Mobile styles (e.g., screens less than 768px wide) */
+@media screen and (max-width: 767px) {
+    .memorial-services {
+        margin: auto;
+        text-align: center;
+    }
+    .memorial-description {
+        display: inline-block;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .memorial-column {
+        padding-top: 1%;
+        padding-bottom: 1%;
+        flex-grow: 1;
+        border-top: 1px solid lightgray;
+    }
+    .memorialmap {
+        width: 300px;
+    }
+}

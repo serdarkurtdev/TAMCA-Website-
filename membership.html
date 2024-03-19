@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMCA</title>
+    <link rel="stylesheet" href="css/membership.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="maincontent-container">
+    <section class="header">
+    <nav>
+        <a href="index.html"><img src="images/TAMCA Logo.png" alt="TAMCA Logo"></a>
+        <a href="index.html"><img src="images/selimiye-mosque-logo.png" alt="TAMCA Logo"></a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="education.html">Education</a></li>
+                <li><a href="donate.html">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="buttonlayout">
+        <button class="btnLogin" id="btnLogin" type="button">Login/Sign Up</button>
+        <button class="btnLogout" id="btnLogout" type="button">Log Out</button>
+    </div>
+    </section>
+
+<!-- Banner section -->
+<section class="banner">
+    <h1>Membership</h1><br>
+</section>
+
+<div class="container">
+    <div class="inner">
+        <h1>Manage Membership</h1>
+        <div class="household-members-container">
+          <div><span id="authUser"></span></div>
+        <table>
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th><input type="checkbox" id="selectAllCheckbox"></th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </div>        
+    </div>
+  </div>
+
+<div class="footer">Designed and Developed by Serdar Kurt<br>
+    &copy; 2023 TAMCA</div>
+</body>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+    import { getDatabase, set, ref, update } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+    
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDWF7ZTpiUySdlvdrckwFLhuhVItEtYzc",
+      authDomain: "tamca-32b6f.firebaseapp.com",
+      databaseURL: "https://tamca-32b6f-default-rtdb.firebaseio.com",
+      projectId: "tamca-32b6f",
+      storageBucket: "tamca-32b6f.appspot.com",
+      messagingSenderId: "270078571509",
+      appId: "1:270078571509:web:91877bf478b18ecfa2e6bc",
+      measurementId: "G-9L44SWFGJ8"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const database = getDatabase(app);
+
+    const headers = {'Content-Type':'application/json',
+                    'Access-Control-Allow-Origin':'*',
+                    'Access-Control-Allow-Methods':'GET,POST,PATCH,OPTIONS'}
+        // Initialize jsforce with your Salesforce credentials
+    const conn = new jsforce.Connection({
+        ouath2 : {
+        clientId: '3MVG9cHH2bfKACZavLDrPPbLHn9NEgX.MoajG6GuU3QVpmebMw5dfhN74XFz3TNakmjYt1EXhHfni2vo9KWJx',
+        clientSecret : '184D78353BB90F092BB1CAA2E978D00E4DA5B935011DEE8AA30646610A0EB42C',
+        redirectUri: 'https://login.salesforce.com/services/oauth2/callback'
+    },
+
+  proxyUrl: 'https://node-salesforce-proxy.herokuapp.com/proxy/'
+  });
+  
+  // Salesforce credentials
+  const username = 'serdar_kurt@icloud.com';
+  const password = 'Bursags1664!';
+  const securityToken = 'XGWM7eM1fhQHH293GPqNintRn'; // You can find this in Salesforce s}}}ettings
+
+const user = auth.currentUser;
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    const userEmail = user.email;
+
+    conn.login(username, password + securityToken, function(err, res) {
+      if (err) {
+        return console.error(err);
+      }
+    console.log('Connected to Salesforce');
+
+    // Define the SOQL query to retrieve the contact fields
+    const query = `SELECT FirstName, LastName, Account.Id, Account.Name FROM Contact WHERE Email = '${userEmail}'`;
+
+    // Execute the query
+    conn.query(query, function(err, result) {
+      if (err) {
+        return console.error(err);
+      }
+
+    console.log('Query Result:');
+    console.log(result.records);
+    
+    const contact = result.records[0]
+    const household_id = contact.Account.Id;
+    const household_name = contact.Account.Name;
+
+    const authFullName = contact.FirstName + '' + contact.LastName;
+    document.getElementById('authUser').textContent = authFullName;
+
+    const secondQuery = `SELECT FirstName, LastName FROM Contact WHERE Account.Id = '${contact.Account.Id}' AND Email != '${userEmail}'`;
+
+    // Execute the second query using the householdId
+    conn.query(secondQuery, function(err, secondResult) {
+      if (err) {
+        return console.error(err);
+      }
+
+    console.log('Second Query Result:');
+    console.log(secondResult.records);
+
+     // Iterate over the results of the second query
+  for (const contact of secondResult.records) {
+    // Create a new row in the table element
+    const row = document.createElement('tr');
+
+    // Add the first name and last name of the contact to the row
+    const firstNameCell = document.createElement('td');
+    firstNameCell.textContent = contact.FirstName;
+    row.appendChild(firstNameCell);
+
+    const lastNameCell = document.createElement('td');
+    lastNameCell.textContent = contact.LastName;
+    row.appendChild(lastNameCell);
+
+    // Add a checkbox to the row
+    const checkboxCell = document.createElement('td');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.value = contact.Id;
+    checkboxCell.appendChild(checkbox);
+    row.appendChild(checkboxCell);
+
+    // Append the row to the table element
+    document.querySelector('tbody').appendChild(row);
+  }
+    });
+});
+});
+
+
+      // ...
+  } else {
+      // User is signed out
+      // ...
+  }
+  });
+
+  // Get the "Select All" checkbox.
+const selectAllCheckbox = document.querySelector('#selectAllCheckbox');
+
+// Add an event listener to the "Select All" checkbox.
+selectAllCheckbox.addEventListener('change', function() {
+  // Get all the checkboxes in the table.
+const checkboxes = document.querySelectorAll('.household-members-container input[type="checkbox"]');
+
+// Set the checked state of all the checkboxes to the checked state of the "Select All" checkbox.
+checkboxes.forEach(checkbox => checkbox.checked = selectAllCheckbox.checked);
+});
+
+
+btnLogout.addEventListener('click', (e) => {
+signOut(auth).then(() => {
+// Sign-out successful.
+window.location.href = "login.html"
+}).catch((error) => {
+// An error happened.
+});
+})
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsforce/1.10.1/jsforce.min.js"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</html>

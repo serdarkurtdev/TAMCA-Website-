@@ -1,0 +1,202 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  html, body {
+    background: #ffffff;
+    height: 100%;
+  }
+  
+  body {
+    background: #ffffff;
+  }
+  
+  .maincontent-container {
+    color: white;
+    margin-bottom: 2em;
+    min-height: 100%;
+    width: 100%;
+    overflow: auto;
+    text-align: justify;
+  }
+  
+  /* Style the header */
+  .header {
+    width: 100%;
+    background: white;
+    z-index: 99;
+    display: flex;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+    position: relative;
+    justify-content: space-between;
+  }
+  
+  nav {
+    display: flex;
+    padding: 1%;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  nav img {
+    width: 50px;
+  }
+  
+  .nav-links {
+    flex: 1;
+    padding-left: 100px;
+  }
+  
+  .nav-links ul li {
+    list-style: none;
+    display: inline-block;
+    padding: 8px 20px;
+    position: relative;
+    font-size: large;
+  }
+  
+  /* Style the navigation menu */
+  nav ul {
+    list-style: none;
+    position: relative;
+    display: flex;
+    margin-left: 50px;
+  }
+  
+  .nav-links ul li a {
+    color: #000000;
+    text-decoration: none;
+  }
+  
+  .nav-links ul li::after {
+    content: '';
+    width: 0%;
+    height: 2px;
+    background: #000000;
+    display: block;
+    margin: auto;
+    transition: 0.5s;
+  }
+  
+  .nav-links ul li:hover::after {
+    width: 100%;
+  }
+  
+  .buttonlayout {
+    padding: 1%;
+    position: relative;
+  }
+  
+  .btnLogin {
+    width: 150px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #008ddf;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #008ddf;
+    font-weight: 500;
+    transition: .5s;
+    text-align: center;
+  }
+  
+  .btnLogout {
+    width: 150px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid #df0000;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: #df0000;
+    font-weight: 500;
+    transition: .5s;
+    text-align: center;
+  }
+  
+  .btnLogin:hover {
+    background: #008ddf;
+    border: 2px solid #008ddf;
+    color: #ffffff;
+  }
+  
+  .btnLogout:hover {
+    background: #df0000;
+    border: 2px solid #df0000;
+    color: #ffffff;
+  }
+  
+  /* Style the banner */
+  .banner {
+    color: #000000; /* Text color for the "Welcome!" text */
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+  }
+  
+  /* Style the "Welcome!" text */
+  .banner h1 {
+    font-size: 72px;
+    text-align: center;
+  }
+
+  .container {
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+    height: 1000px;
+    background: transparent;
+    border: 2px solid rgba(255, 255, 255, .5);
+    border-radius: 20px;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 30px rgba(0, 0, 0, .5);
+    animation: Slide_Up 1.6s ease;
+    margin-bottom: 2%;
+  }
+
+  .household-members-container {
+    margin: 0 auto;
+  }
+  
+  .inner {
+    animation: Slide_Up 1.8s ease;
+    color: #000000;
+    padding: 2%;
+  }
+
+  .inner table {
+    margin: 0 auto;
+    padding-top: 5%;
+  }  
+
+  table th {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  table tbody {
+    padding-left: 10px;
+    padding-right: 10px;
+    text-align: center;
+  }
+
+  /* Style the footer */
+  .footer {
+    color: #ffffff;
+    left: 0;
+    font-size: small;
+    position: relative;
+    text-align: center;
+    width:100%;
+    background-color: #272727;
+  }

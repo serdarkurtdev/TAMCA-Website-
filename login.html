@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMCA</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <section class="desktop-nav">
+        <div class="logos">
+            <a href="index.html"><img src="images/TAMCA Logo.png" alt="TAMCA Logo"></a>
+            <a href="index.html"><img src="images/selimiye-mosque-logo.png" alt="TAMCA Logo"></a>
+        </div>
+        <nav class="navbar-desktop">
+            <div class="nav-links" id="navLinks">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                    <li><a href="login.html" id="desktop-nav-profile-btn">Profile</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+    </section>
+    
+    <section class="mobile-nav">
+        <nav class="nav-mobile">
+            <a href="index.html" class="nav-links-mobile">
+                <ion-icon name="home"></ion-icon>
+                    <span class="nav-text">Home</span>
+            </a>
+            <a href="donate.html" class="nav-links-mobile ">
+                <ion-icon name="logo-paypal"></ion-icon>
+                    <span class="nav-text">Donate</span>
+            </a>
+            <a href="login.html" class="nav-links-mobile nav-icon link-active-mobile" id="mobile-nav-profile-btn">
+                <ion-icon name="person-circle"></ion-icon>
+                    <span class="nav-text">Profile</span>
+            </a>
+            <a href="education.html" class="nav-links-mobile">
+                <ion-icon name="school"></ion-icon>
+                    <span class="nav-text">Education</span>
+            </a>
+            <a href="contact.html" class="nav-links-mobile">
+                <ion-icon name="chatbubble"></ion-icon>
+                    <span class="nav-text">Contact</span>
+            </a>
+        </nav>
+    </section>
+<section class="content">
+<!-- Banner section -->
+<section class="banner">
+    <h1>Login / Sign Up</h1>
+</section>
+
+<div class="maincontent-container">
+<!-- Rest of your website content goes here -->
+<div class="wrapper" id="wrapper">
+    <div class="form-box login" id="form-box login">
+        <h2>Login</h2>
+        <div action="#">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" id="email" name="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" id="password" name="password" required>
+                <label>Password</label>
+            </div>
+            <input type="submit" id="logIn" name="login_submit" value="Login" class="btn-login"></input>
+            <div class="login-register">
+                <p>Don't have an account?&nbsp;<a href="#" class="register-link">Register</a></p>
+                <p>Forgot Password?&nbsp;<a href="#" class="forgot-link">Reset Password</a></p>
+            </div>
+            <button class="google-login-button" id="googleLogIn">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google Logo" class="google-logo"> Continue with Google
+            </button><br>
+            <button class="facebook-login-button" id="facebookLogIn">
+                <img src="https://cdn.freebiesupply.com/logos/large/2x/facebook-logo-2019.png" alt="Facebook Logo" class="facebook-logo"> Continue with Facebook
+            </button>
+        </div>
+    </div>
+    <div class="form-box register">
+        <h2>Sign Up</h2>
+        <div action="#">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person-circle"></ion-icon></span>
+                <input type="text" id="signUpfirstName" name="firstName" required>
+                <label>First Name</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="person-circle"></ion-icon></ion-icon></span>
+                <input type="text" id="signUplastName" name="lastName" required>
+                <label>Last Name</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" id="signUpEmail" name="email" required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <span class="icon"><ion-icon name="lock-closed"></ion-icon></span>
+                <input type="password" id="signUpPassword" name="password" required>
+                <label>Password</label>
+            </div>
+            <input type="submit" id="signUp" name="signup_submit" value="Sign Up" class="btn-login"></input>
+            <div class="login-register">
+                <p>Already have an account?&nbsp;<a href="#" class="login-link">Login</a></p>
+            </div>
+            <div>
+                <p style="font-size: smaller; color: lightgray;">Please note that all fields are required.</p>
+            </div>
+        </div>
+    </div>
+    <div class="form-box reset">
+        <h2>Reset Password</h2>
+        <div action="#">
+            <div class="input-box">
+                <span class="icon"><ion-icon name="mail"></ion-icon></span>
+                <input type="email" id="resetEmail" name="resetEmail" required>
+                <label>Email</label>
+            </div>
+            <input type="submit" id="resetLink" name="signup_submit" value="Send Reset Email" class="btn-login"></input>
+            <div class="login-register">
+            <p>Back to&nbsp;<a href="#" class="reset-login-link">Login</a></p>
+        </div>
+        </div>
+    </div>
+</div>
+
+    </div>
+</section>
+</div>
+</section>
+
+<footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-row">
+        <div class="footer-about">
+          <h6>About</h6>
+          <p class="text-justify">Our goal is to provide those in our community with the highest quality of services, education, and assistance. We aim to provide education about Turkish culture and the Islamic religion for anyone who is or may be interested in learning and offer classes year-round. We also provide services to our members and allow everyone to participate in community service opportunities. We provided assistance for those in need by utilizing our donation platform(s) as well as the selfless kind acts of our members. We have been providing education and services for over 30 years and continue to for families and children in our community. We also host fundraisers and events with special hosts to help build stronger connections for everyone in our community.</p>
+        </div>
+
+        <div class="footer-contact">
+          <h6>Contact</h6>
+          <ul class="footer-links">
+            <li><a href="https://maps.app.goo.gl/X13j3HETgLPk1YBJA"><ion-icon name="location-sharp"></ion-icon> 541 Levittown Parkway, Levittown, PA 19054</a></li>
+            <li><a href="tel:12673640615"><ion-icon name="call-sharp"></ion-icon> +1 (267) 364-0615</a></li>
+            <li><a href="http://scanfcode.com/category/back-end-development/"><ion-icon name="mail-sharp"></ion-icon> tamca@tamca.org</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-quicklinks">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="https://tamca.org/contact.html">Contact Us</a></li>
+            <li><a href="https://tamca.org/memorial.html">Memorial Services</a></li>
+            <li><a href="https://tamca.org/privacy-policy.html">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="footer-container-copyright">
+      <div class="footer-row-copyright">
+        <div class="footer-copyright">
+          <p class="copyright-text">Copyright &copy; 2023 All Rights Reserved by 
+       <a href="index.html">TAMCA</a>.
+          </p>
+          <p>Designed and developed by Serdar Kurt</p>
+        </div>
+
+        <div class="footer-social">
+          <ul class="social-icons">
+            <li><a class="facebook" href="https://www.facebook.com/TAMCAYunusEmreCami/"><i class="fa fa-facebook"></i></a></li>
+            <li><a class="instagram" href="https://www.instagram.com/tamcamosque/"><i class="fa fa-instagram"></i></a></li>
+            <li><a class="whatsapp" href="https://wa.me/12673460615"><i class="fa fa-whatsapp"></i></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+</footer>
+
+<script src="js/login.js"></script>
+<script type="module">
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, signInWithPopup, linkWithPopup, GoogleAuthProvider, FacebookAuthProvider, sendPasswordResetEmail   } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+import { getFirestore, collection, doc, setDoc, addDoc, updateDoc, getDocs, query, where, onSnapshot, or, serverTimestamp  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+
+
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: "AIzaSyDDWF7ZTpiUySdlvdrckwFLhuhVItEtYzc",
+    authDomain: "tamca-32b6f.firebaseapp.com",
+    databaseURL: "https://tamca-32b6f-default-rtdb.firebaseio.com",
+    projectId: "tamca-32b6f",
+    storageBucket: "tamca-32b6f.appspot.com",
+    messagingSenderId: "270078571509",
+    appId: "1:270078571509:web:91877bf478b18ecfa2e6bc",
+    measurementId: "G-9L44SWFGJ8"
+};
+    
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const firestore = getFirestore(app);
+const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider();
+
+signUp.addEventListener('click', (e) => {
+
+    e.preventDefault();
+
+    const first_name = document.getElementById('signUpfirstName').value;
+    const last_name = document.getElementById('signUplastName').value;
+    const emailInput = document.getElementById('signUpEmail').value;
+    const password = document.getElementById('signUpPassword').value;
+    const contactsRef = collection(firestore, "contacts");
+
+    const emailquery = query(
+      collection(firestore, "contacts"), 
+      where("email", "==", emailInput)
+    );
+
+    getDocs(emailquery)
+        .then((querySnapshot) => {
+            if (!querySnapshot.empty) {
+                querySnapshot.forEach((docSnapshot) => {
+                   
+                    const data = docSnapshot.data();
+                    const email = data.email
+                    const contactId = docSnapshot.id
+                    const contactDocRef = doc(firestore, 'contacts', contactId);
+
+                    createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed up 
+                        const user = userCredential.user;
+                        const uid = user.uid
+
+                        updateDoc(contactDocRef, {
+                            uid: uid,
+                            websiteSignUpDate: serverTimestamp()
+                        })
+                        .then(() => {
+                        alert('Succesfully signed up! Redirecting you to login.')
+                        window.location.href = "login.html";
+                        })
+                        // ...
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+
+                        alert(errorMessage)
+                        // ..
+                    });
+
+                })
+            } else {
+
+                const email = emailInput
+
+                    createUserWithEmailAndPassword(auth, email, password)
+                    .then((userCredential) => {
+                        // Signed up 
+                        const user = userCredential.user;
+                        const uid = user.uid;
+
+                        const newContactDocRef = addDoc(collection(firestore, "contacts"), {
+                            uid: uid,
+                            first_name: first_name,
+                            last_name: last_name,
+                            email: email,
+                            address: null,
+                            websiteSignUpDate: serverTimestamp()
+                        })
+                        .then(() => {
+                        alert('Succesfully signed up! Redirecting you to login.')
+                        window.location.href = "login.html";
+                        })
+                        // ...
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+
+                        alert(errorMessage)
+                        // ..
+                    });
+
+                    
+            }
+        })
+
+});
+
+logIn.addEventListener('click',(e) => {
+
+    e.preventDefault();
+
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+
+        // Get the user ID.
+        const uid = user.uid;
+
+        const loggedInQuery = query(
+        collection(firestore, "contacts"), 
+        where("uid", "==", uid)
+        );
+
+        getDocs(loggedInQuery)
+        .then((querySnapshot) => {
+                querySnapshot.forEach((docSnapshot) => {
+                   
+                    const data = docSnapshot.data();
+                    const email = data.email
+                    const contactId = docSnapshot.id
+                    const contactDocRef = doc(firestore, 'contacts', contactId);
+
+                    updateDoc(contactDocRef, {
+                            last_login_dt: serverTimestamp()
+                    })
+                    .then(() => {
+                    // The updateDoc is successful, now you can redirect
+                    alert('Successfully Logged In');
+                    window.location.href = 'profile.html';
+                    })
+
+                })
+        })
+        // ...
+})
+    .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+    alert(errorMessage)
+    });
+
+    
+})
+
+resetLink.addEventListener('click',(e) => {
+
+e.preventDefault();
+
+const email = document.getElementById('resetEmail').value;
+
+sendPasswordResetEmail(auth, email)
+  .then(() => {
+    alert('Password reset email sent!');
+    // Password reset email sent!
+    // ..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // ..
+  });
+})
+
+googleLogIn.addEventListener('click', (e) => {
+    e.preventDefault();
+    
+    signInWithPopup(auth, googleProvider)
+        .then((result) => {
+            // This gives you a Google Access Token. You can use it to access the Google API.
+            const credential = GoogleAuthProvider.credentialFromResult(result);
+            const token = credential.accessToken;
+            // The signed-in user info.
+            const user = result.user;
+
+            // Now, you can access the user's email, first name, last name, and phone number
+            const email = user.email;
+            const uid = user.uid;
+            const firstName = user.displayName.split(' ')[0]; // Assuming first name is before the space
+            const lastName = user.displayName.split(' ')[1]; // Assuming last name is after the space
+
+            // Check if the user is already registered in Firestore
+            const emailQuery = query(
+                collection(firestore, "contacts"),
+                where("email", "==", email)
+            );
+
+            getDocs(emailQuery)
+                .then((querySnapshot) => {
+                    if (!querySnapshot.empty) {
+                        // User is already registered, update their Firestore contact
+                        querySnapshot.forEach((docSnapshot) => {
+                            const contactId = docSnapshot.id;
+                            const contactDocRef = doc(firestore, 'contacts', contactId);
+
+                            updateDoc(contactDocRef, {
+                                uid: uid,
+                                last_login_dt: serverTimestamp(),
+                                // You can add other fields to update here
+                            })
+                            .then(() => {
+                                window.location.href = 'profile.html';
+                            })
+                            .catch((error) => {
+                                console.error('Error updating contact in Firestore:', error);
+                            });
+                        });
+                    } else {
+                        // User is not registered, create a new document in Firestore
+                        const newContactDocRef = addDoc(collection(firestore, "contacts"), {
+                            uid: uid,
+                            email: email,
+                            first_name: firstName,
+                            last_name: lastName,
+                            phone: phoneNumber,
+                            address: null,
+                            websiteSignUpDate: serverTimestamp(),
+
+                            // You can add other fields for new contacts here
+                        })
+                        .then(() => {
+                            window.location.href = 'profile.html';
+                        })
+                        .catch((error) => {
+                            console.error('Error creating a new contact in Firestore:', error);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Firestore query error:', error);
+                });
+        })
+        .catch((error) => {
+            // Handle Google sign-in errors here
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Google Sign-In Error:', errorMessage);
+        });
+});
+
+// Add a click event listener to your Facebook login button
+facebookLogIn.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    // Initialize the Facebook provider
+    const facebookProvider = new FacebookAuthProvider();
+
+    // Sign in with Facebook using Firebase Authentication
+    signInWithPopup(auth, facebookProvider)
+        .then((result) => {
+            // This gives you an access token and user information
+            const user = result.user;
+
+            // Now, you can access the user's email, UID, name, etc.
+            const email = user.email;
+            const uid = user.uid;
+            const name = user.displayName;
+
+            // Check if the user is already registered in Firestore
+            const emailQuery = query(
+                collection(firestore, "contacts"),
+                where("email", "==", email)
+            );
+
+            getDocs(emailQuery)
+                .then((querySnapshot) => {
+                    if (!querySnapshot.empty) {
+                        // User is already registered, update their Firestore contact
+                        querySnapshot.forEach((docSnapshot) => {
+                            const contactId = docSnapshot.id;
+                            const contactDocRef = doc(firestore, 'contacts', contactId);
+
+                            updateDoc(contactDocRef, {
+                                uid: uid,
+                                last_login_dt: serverTimestamp(),
+                                // You can add other fields to update here
+                            })
+                            .then(() => {
+                                window.location.href = 'profile.html';
+                            })
+                            .catch((error) => {
+                                console.error('Error updating contact in Firestore:', error);
+                            });
+                        });
+                    } else {
+                        // User is not registered, create a new document in Firestore
+                        const newContactDocRef = addDoc(collection(firestore, "contacts"), {
+                            uid: uid,
+                            email: email,
+                            full_name: name,
+                            phone: null,
+                            address: null,
+                            websiteSignUpDate: serverTimestamp(),
+                            // You can add other fields for new contacts here
+                        })
+                        .then(() => {
+                            window.location.href = 'profile.html';
+                        })
+                        .catch((error) => {
+                            console.error('Error creating a new contact in Firestore:', error);
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error('Firestore query error:', error);
+                });
+        })
+        .catch((error) => {
+            // Handle Facebook sign-in errors here
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.error('Facebook Sign-In Error:', errorMessage);
+        });
+});
+
+
+
+</script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+</body>
+</html>

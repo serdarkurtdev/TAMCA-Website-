@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TAMCA</title>
+    <link rel="stylesheet" href="css/accountsetup.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<div class="maincontent-container">
+    <section class="header">
+        <nav>
+            <a href="index.html"><img src="images/TAMCA Logo.png" alt="TAMCA Logo"></a>
+            <a href="index.html"><img src="images/selimiye-mosque-logo.png" alt="TAMCA Logo"></a>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="education.html">Education</a></li>
+                    <li><a href="donate.html">Donate</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="buttonlayout">
+            <button class="btnLogin" id="btnLogin" type="button">Login/Sign Up</button>
+            <button class="btnLogout" id="btnLogout" type="button">Log Out</button>
+        </div>
+        </section>
+
+<!-- Banner section -->
+<section class="banner">
+    <h1>Account Setup</h1>
+    <p>Please wait while we gather your information.</p>
+</section>
+
+<section class="container">
+    <div class="wrapper">
+        <div class="content">
+            <h2>We may have some contact information that you can link to your account.</h2><br>
+            <p>Please select the option that seems most familiar to you.</p>
+            <div class="account-match-container">
+                <h4>Matches by email</h4>
+                <div class="email-match">
+                    <input type="checkbox">
+                    <span>email</span>
+                    <p>First Name, Street, household name</p>
+                </div>
+                <h4>Matches by name</h4>
+                <div class="name-match">
+                    <input type="checkbox">
+                    <span>name</span>
+                    <p>Street, household name</p>
+                </div>
+            </div>
+            <button class="btnSkip" id="btnSkip" type="button">Skip for now</button>
+            <button class="btnContinue" id="btnContinue" type="button">Continue</button>
+        </div>
+    </div>
+</section>
+
+</div>
+<div class="footer">Designed and Developed by Serdar Kurt<br>
+    &copy; 2023 TAMCA</div>
+</body>
+<script src="js/accountsetup.js"></script>
+<script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-analytics.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-auth.js";
+    import { getFirestore, collection, doc, setDoc, getDocs, updateDoc, query, where, onSnapshot  } from "https://www.gstatic.com/firebasejs/10.3.1/firebase-firestore.js";
+    
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDWF7ZTpiUySdlvdrckwFLhuhVItEtYzc",
+      authDomain: "tamca-32b6f.firebaseapp.com",
+      databaseURL: "https://tamca-32b6f-default-rtdb.firebaseio.com",
+      projectId: "tamca-32b6f",
+      storageBucket: "tamca-32b6f.appspot.com",
+      messagingSenderId: "270078571509",
+      appId: "1:270078571509:web:91877bf478b18ecfa2e6bc",
+      measurementId: "G-9L44SWFGJ8"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+    const user = auth.currentUser;
+    const wrapper = document.querySelector('.wrapper');
+
+    onAuthStateChanged(auth, (user) => {
+if (user) {
+    // User is signed in, see docs for a list of available properties
+    // https://firebase.google.com/docs/reference/js/auth.user
+    const uid = user.uid;
+    const userEmail = user.userEmail;
+    const usersRef = collection(firestore, "users");
+    wrapper.classList.remove('active');
+
+    getDocs(usersRef).then((querySnapshot) =>{
+        querySnapshot.forEach((doc) => {
+            const data = doc.data();
+      console.log("Document data:", data);
+      // You can access specific fields within the document like this:
+      document.getElementById('authFirstName').textContent = data.first_name;
+      document.getElementById('authLastName').textContent = data.last_name;
+      document.getElementById('authEmail').textContent = data.email_address;
+    });
+    })
+
+    PayPal.Donation.Button({
+                env: 'sandbox',
+                hosted_button_id: '7G2ZC84B5J6AU',
+                // business: 'YOUR_EMAIL_OR_PAYERID',
+                image: {
+                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                    title: 'PayPal - The safer, easier way to pay online!',
+                    alt: 'Donate with PayPal button'
+                },
+                onComplete: function (params) {
+                    console.log(params);
+                    
+                    const transactionId = params.tx;
+                    const transactionAmt = params.amt;
+                    const transationStatus = params.st;
+                    const transaction_date = new Date();
+                    const uid_first_name = document.getElementById('authFirstName').textContent;
+                    const uid_last_name = document.getElementById('authLastName').textContent;
+                    const uid_email = document.getElementById('authEmail').textContent;
+                    const uid_uid = user.uid;
+                    
+                    setDoc(doc(firestore, "donations", transactionId), {
+                    uid: uid_uid,
+                    first_name: uid_first_name,
+                    last_name: uid_last_name,
+                    email_address: uid_email,
+                    transaction_date: transaction_date,
+                    transaction_amount: transactionAmt,
+                    transaction_status: transationStatus,
+                    cause: 'general' //for general donations
+                    })
+                    .then(() => {
+                        alert('Thank you for your donation! Your invoice will be emailed to you soon.');
+                    })
+                    .catch((error) => {
+                        console.log('Error writing user data to Firestore: ' + error.message);
+                    });
+                },
+            }).render('#paypal-donate-button-container-auth');
+
+    btnLogin.innerHTML = 'My Profile';
+    btnLogin.onclick = () => {
+    window.location.href = "profile.html"
+};
+    // ...
+} else {
+    // User is signed out
+    btnLogin.onclick = () => {
+    window.location.href = "login.html"
+};
+    wrapper.classList.add('active');
+    btnLogout.disabled = true;
+    btnLogout.style.display = 'none';
+    // Get a reference to the PayPal Donate button element
+    PayPal.Donation.Button({
+                env: 'sandbox',
+                hosted_button_id: '7G2ZC84B5J6AU',
+                // business: 'YOUR_EMAIL_OR_PAYERID',
+                image: {
+                    src: 'https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif',
+                    title: 'PayPal - The safer, easier way to pay online!',
+                    alt: 'Donate with PayPal button'
+                },
+                onComplete: function (params) {
+                    console.log(params);
+
+                    const transactionId = params.tx;
+                    const transactionAmt = params.amt;
+                    const transationStatus = params.st;
+                    const transaction_date = new Date();
+                    const anon_first_name = document.getElementById('signUpfirstName').value;
+                    const anon_last_name = document.getElementById('signUplastName').value;
+                    const anon_email = document.getElementById('signUpEmail').value;
+                    const anon_uid = crypto.randomUUID();
+                    
+                    setDoc(doc(firestore, "donations", transactionId), {
+                    uid: anon_uid,
+                    first_name: anon_first_name,
+                    last_name: anon_last_name,
+                    email_address: anon_email,
+                    transaction_date: transaction_date,
+                    transaction_amount: transactionAmt,
+                    transaction_status: transationStatus,
+                    cause: 'general' //for general donations
+                    })
+                    .then(() => {
+                        alert('Thank you for your donation! Your invoice will be emailed to you soon.');
+                    })
+                    .catch((error) => {
+                        console.log('Error writing user data to Firestore: ' + error.message);
+                    });
+                },
+            }).render('#paypal-donate-button-container-unauth');
+    // ...
+}
+});
+
+btnLogout.addEventListener('click', (e) => {
+signOut(auth).then(() => {
+// Sign-out successful.
+window.location.href = "login.html"
+}).catch((error) => {
+// An error happened.
+});
+})
+    </script>
+    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+</html>

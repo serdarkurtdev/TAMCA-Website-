@@ -1,0 +1,224 @@
+.maincontent-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5%;
+}
+
+.wrapper {
+  position: relative;
+  width: auto;
+  height: auto;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, .5);
+  border-radius: 20px;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 2%;
+  transition: height .2s ease;
+}
+
+.wrapper.form-box {
+  width: 100%;
+}
+
+.wrapper .form-box.login {
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+
+.wrapper.active .form-box.login {
+  transition: none;
+  transform: translateX(-400px);
+}
+
+.wrapper.activereset .form-box.login {
+  transition: none;
+  transform: translateX(400px);
+}
+
+
+.wrapper .form-box.register,
+.wrapper.activereset .form-box.register {
+  position: absolute;
+  transition: none;
+  transform: translateX(400px);
+}
+
+.wrapper.active .form-box.register {
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+
+.wrapper .form-box.reset,
+.wrapper.active.form-box.reset {
+  position: absolute;
+  transition: none;
+  transform: translateX(-400px);
+}
+
+.wrapper.activereset .form-box.reset {
+  transition: transform .18s ease;
+  transform: translateX(0);
+}
+
+.form-box h2 {
+  font-size: 2em;
+  text-align: center;
+}
+
+.form-box.reset p {
+  text-align: center;
+}
+
+.input-box {
+  position: relative;
+  height: 50px;
+  border-bottom: 2px solid black;
+  margin: 30px 0;
+  display: flex;
+}
+
+.input-box label {
+  position: absolute;
+  top: 50%;
+  left: 1px;
+  transform: translateY(-50%);
+  font-size: 1em;
+  pointer-events: none;
+  transition: .5s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+  top: -5px;
+}
+
+.input-box input {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-size: 1em;
+  font-weight: 600;
+  padding: 0 35px 0 5px;
+}
+
+.input-box .icon {
+  position: absolute;
+  right: 8px;
+  font-size: 1.2em;
+  line-height: 57px;
+}
+
+.btn-login {
+  width: 100%;
+  height: 50px;
+  background: #008ddf;
+  color: white;
+  outline: none;
+  border: solid 2px #008ddf;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.btn-login:hover {
+  background: #0069a7;
+  border: solid 2px #0069a7;;
+}
+.google-login-button {
+  background-color: white;
+  color: black;
+  border: 1px solid gainsboro;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center both horizontally and vertically */
+  box-shadow: 0px 3px 6px gainsboro;
+  width: 100%;
+}
+
+.google-login-button:hover {
+  background-color: gainsboro; /* Darker Blue on hover */
+  transition: .5s ease;
+}
+
+.google-logo {
+  block-size: 20px;
+  margin-right: 10px;
+}
+.facebook-login-button {
+  background-color: white; /* Facebook Blue */
+  color: black;
+  border: 1px solid gainsboro;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center both horizontally and vertically */
+  box-shadow: 0px 3px 6px gainsboro;
+  width: 100%;
+}
+
+.facebook-login-button:hover {
+  background-color: gainsboro; /* Darker Blue on hover */
+  transition: .5s ease;
+}
+
+.facebook-logo {
+  block-size: 20px;
+  margin-right: 10px;
+}
+.login-register {
+  font-size: .9em;
+  text-align: center;
+  font-weight: 500;
+  margin: 25px 0 10px;
+}
+
+.login-register p a {
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-register p a:hover {
+  text-decoration: underline;
+}
+
+@keyframes Slide_Up{
+  0%  {
+    transform: translateY(250px);
+  }
+  100% {
+    transform: translateY(0)
+  }
+}
+
+/* Tablet styles (e.g., screens between 768px and 1024px wide) */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+.wrapper {
+  padding: 5%;
+}
+}
+
+/* Mobile styles (e.g., screens less than 768px wide) */
+@media screen and (max-width: 767px) {
+.wrapper {
+  padding: 10%;
+}
+.site-footer {
+    display: none;
+}
+}
