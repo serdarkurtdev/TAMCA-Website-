@@ -4,7 +4,7 @@ const path = require('path');
 const app = express();
 
 // Serve static files from the current directory
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the server
 const PORT = process.env.PORT || 3000;
