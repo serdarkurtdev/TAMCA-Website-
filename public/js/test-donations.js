@@ -41,7 +41,7 @@ form.addEventListener('submit', async function(event) {
 // Send the token to your server
 async function stripeTokenHandler(token) {
     try {
-        const response = await fetch('https://tamca.org/stripe/webhook', {
+        const response = await fetch('/webhook', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
