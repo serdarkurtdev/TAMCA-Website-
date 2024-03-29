@@ -1,7 +1,10 @@
 const express = require('express');
+const cors = require('cors');
 const path = require('path');
 
 const app = express();
+
+app.use(cors());
 
 // Serve static files from the 'public' directory
 app.use(express.static(path.join(__dirname, 'public')));
@@ -40,6 +43,7 @@ app.get('/tvdisplay2', (req, res) => {
   const { page } = req.params;
   res.sendFile(path.join(__dirname, 'public', `tvdisplay2.html`));
 });
+
 
 // Handle 404 errors
 app.use((req, res) => {
