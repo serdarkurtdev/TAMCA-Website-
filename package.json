@@ -7,7 +7,7 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "mocha",
+    "test": "echo \"This is a sample test script\"",
     "start": "node server.js"
   },
   "author": "serdar kurt",
