@@ -7,9 +7,12 @@
     "test": "tests"
   },
   "scripts": {
-    "test": "\"echo \\\"Error: no test specified\\\" && exit 1\"",
+    "test": "mocha",
     "start": "node server.js"
   },
   "author": "serdar kurt",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.7.3"
+  }
 }
