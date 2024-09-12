@@ -113,7 +113,7 @@ footer {
         color: rgb(59, 59, 59);
         text-align: center;
         width: 100%;
-        font-size: medium;
+        font-size: xx-large;
         position: fixed;
         bottom: 0;
         z-index: 998;
@@ -122,7 +122,7 @@ footer {
     }
   .mobile-nav ul {
     margin: 0;
-    padding: 10px;
+    padding: 20px;
     display: flex;
     justify-content: space-between; /* Align items in a row */
     list-style: none;
@@ -138,6 +138,7 @@ footer {
 }
 .mobile-nav li ion-icon {
   outline: none; /* Remove the outline on click */
+  font-size: 48px;
 }
     }
 
@@ -164,19 +165,13 @@ footer {
       footer {
         display: none;
     }
-      .banner h1 {
-        font-size: 50px;
-      }
-      .banner h2 {
-        font-size: 15px;
-      }
       .mobile-nav {
         display: block;
         background-color: #ffffff;
         color: rgb(59, 59, 59);
         text-align: center;
         width: 100%;
-        font-size: small;
+        font-size: medium;
         position: sticky;
         bottom: 0;
         z-index: 998;
@@ -201,5 +196,6 @@ footer {
 }
 .mobile-nav li ion-icon {
   outline: none; /* Remove the outline on click */
+  font-size: 24px;
 }
     }
